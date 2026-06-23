@@ -1,0 +1,6 @@
+{
+  "name": "MOS-DOLLI - Restaurante Senegalés",
+  "description": "Auténtica comida senegalesa en Vegueta, Las Palmas de Gran Canaria. Sabores tradicionales como Thieboudienne, Mafe, Yassa Poulet, Bissap y Café Touba.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

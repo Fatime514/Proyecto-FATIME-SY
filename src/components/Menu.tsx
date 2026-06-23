@@ -1,0 +1,288 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { useState, useMemo, useEffect } from "react";
+import { Search, ShoppingBag, Star, RefreshCw, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { MenuItem, Language, translations, signatureDishes } from "../types";
+import { motion, AnimatePresence } from "motion/react";
+
+interface MenuProps {
+  language: Language;
+  onAddToOrder: (dish: MenuItem) => void;
+}
+
+export default function Menu({ language, onAddToOrder }: MenuProps) {
+  const t = translations[language].menu;
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [addedItems, setAddedItems] = useState<Record<string, boolean>>({});
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const categories = [
+    { id: "all", label: t.categories.all },
+    { id: "mains", label: t.categories.mains },
+    { id: "starters", label: t.categories.starters },
+    { id: "sides", label: t.categories.sides },
+    { id: "desserts", label: t.categories.desserts },
+  ];
+
+  // Filter dishes based on selected category and search input
+  const filteredDishes = useMemo(() => {
+    return signatureDishes.filter((dish) => {
+      const name = language === "en" ? dish.nameEn.toLowerCase() : dish.nameEs.toLowerCase();
+      const desc = language === "en" ? dish.descriptionEn.toLowerCase() : dish.descriptionEs.toLowerCase();
+      const tags = language === "en" ? dish.tagsEn.map(t=>t.toLowerCase()) : dish.tagsEs.map(t=>t.toLowerCase());
+      
+      const matchesSearch =
+        name.includes(searchQuery.toLowerCase()) ||
+        desc.includes(searchQuery.toLowerCase()) ||
+        tags.some((tag) => tag.includes(searchQuery.toLowerCase()));
+
+      const matchesCategory = selectedCategory === "all" || dish.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory, language]);
+
+  // Reset slide index when selection or search query changes
+  useEffect(() => {
+    setActiveSlide(0);
+  }, [selectedCategory, searchQuery, filteredDishes.length]);
+
+  const handleAddToCart = (dish: MenuItem) => {
+    onAddToOrder(dish);
+    setAddedItems((prev) => ({ ...prev, [dish.id]: true }));
+    setTimeout(() => {
+      setAddedItems((prev) => ({ ...prev, [dish.id]: false }));
+    }, 1500);
+  };
+
+  const handlePrevSlide = () => {
+    if (filteredDishes.length === 0) return;
+    setActiveSlide((prev) => (prev === 0 ? filteredDishes.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    if (filteredDishes.length === 0) return;
+    setActiveSlide((prev) => (prev === filteredDishes.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <section 
+      id="menu" 
+      className="relative bg-cream py-24 border-b border-gold-500/10"
+    >
+      {/* Abstract native pattern elements in the background */}
+      <div className="absolute inset-0 z-0 opacity-5 bg-[radial-gradient(#6b4423_2px,transparent_2px)] [background-size:32px_32px]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
+        
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <span className="font-sans text-xs font-bold tracking-[0.25em] text-gold-600 uppercase flex items-center justify-center gap-2">
+            <Sparkles className="h-4 w-4 text-gold-600/80" />
+            {t.badge}
+          </span>
+          <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-dark-charcoal mt-3 tracking-wide">
+            {t.title}
+          </h2>
+          <div className="mx-auto mt-4 h-[1px] w-20 bg-gold-500/30" />
+        </div>
+
+        {/* Search & Filter Bar Controls */}
+        <div className="mb-12 space-y-6 max-w-4xl mx-auto">
+          {/* Search Bar */}
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-warm-brown-300" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t.searchPlaceholder}
+              className="w-full bg-white border border-warm-brown-300/25 focus:border-gold-500 text-black placeholder-warm-brown-300 rounded-lg py-4 pl-12 pr-4 font-sans text-sm outline-none transition-all shadow-inner focus:ring-1 focus:ring-gold-500/20"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-sans text-warm-brown-300 hover:text-gold-500"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-4 sm:px-5 py-2.5 rounded font-sans text-[11px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 focus:outline-none ${
+                  selectedCategory === cat.id
+                    ? "bg-gold-500 text-black shadow-md border border-gold-500"
+                    : "bg-white text-neutral-800 border border-warm-brown-300/20 hover:border-gold-500/40 hover:text-black shadow-sm"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Slideshow Presentation of Dishes */}
+        {filteredDishes.length === 0 ? (
+          <div className="text-center py-16 bg-white rounded-xl border border-warm-brown-300/10 max-w-md mx-auto shadow-sm">
+            <RefreshCw className="h-8 w-8 text-warm-brown-300 mx-auto animate-spin mb-4" />
+            <p className="font-sans text-sm text-warm-brown-200">
+              {t.noResults}
+            </p>
+          </div>
+        ) : (
+          <div className="relative max-w-5xl mx-auto px-2 sm:px-12">
+            
+            {/* Slide Frame container */}
+            <div className="relative min-h-[460px] overflow-visible">
+              <AnimatePresence mode="wait">
+                {(() => {
+                  const dish = filteredDishes[activeSlide] || filteredDishes[0];
+                  if (!dish) return null;
+                  const name = language === "en" ? dish.nameEn : dish.nameEs;
+                  const desc = language === "en" ? dish.descriptionEn : dish.descriptionEs;
+                  const tags = language === "en" ? dish.tagsEn : dish.tagsEs;
+                  const isAdded = addedItems[dish.id];
+
+                  return (
+                    <motion.div
+                      key={dish.id}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="grid grid-cols-1 lg:grid-cols-12 gap-0 bg-white rounded-2xl shadow-xl border border-warm-brown-300/10 overflow-hidden min-h-[450px]"
+                    >
+                      {/* Column 1: Food Picture */}
+                      <div className="relative lg:col-span-6 h-64 lg:h-auto min-h-[280px] overflow-hidden bg-neutral-100 shrink-0">
+                        <img
+                          src={dish.image}
+                          alt={name}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                        
+                        {/* Rating Badge */}
+                        <div className="absolute top-4 right-4 flex items-center gap-1 rounded bg-black/75 backdrop-blur-md px-3 py-1.5 text-gold-500 border border-gold-500/25">
+                          <Star className="h-3.5 w-3.5 fill-gold-500 text-gold-500" />
+                          <span className="font-sans text-xs font-bold mt-0.5">{dish.rating.toFixed(1)}</span>
+                        </div>
+
+                        {/* Culinary tags */}
+                        <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                          {tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="rounded bg-gold-500 text-black px-2.5 py-1 text-[10px] font-sans font-bold uppercase tracking-wider shadow-sm"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 2: Details & Buy action */}
+                      <div className="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-between bg-white text-black">
+                        <div>
+                          {/* Slide Count */}
+                          <div className="font-mono text-[11px] text-warm-brown-500 font-bold tracking-widest uppercase mb-4 flex items-center gap-1.5">
+                            <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+                            {language === "en" ? "Slide" : "Diapositiva"} {activeSlide + 1} / {filteredDishes.length}
+                          </div>
+
+                          {/* Title and Pricing */}
+                          <div className="flex justify-between items-baseline gap-4 mb-4 border-b border-warm-brown-300/10 pb-4">
+                            <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-black tracking-wide leading-tight">
+                              {name}
+                            </h3>
+                            <span className="font-sans text-xl sm:text-2xl font-bold text-gold-600 shrink-0">
+                              {dish.price.toFixed(2)}€
+                            </span>
+                          </div>
+
+                          {/* Description details */}
+                          <p className="font-sans text-sm sm:text-base font-light text-neutral-700 leading-relaxed mb-8">
+                            {desc}
+                          </p>
+                        </div>
+
+                        {/* Add To Cart Trigger */}
+                        <div className="mt-auto">
+                          <button
+                            onClick={() => handleAddToCart(dish)}
+                            disabled={isAdded}
+                            className={`w-full py-4 rounded-lg font-sans text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-all duration-300 ${
+                              isAdded
+                                ? "bg-green-600 text-white shadow-md cursor-default"
+                                : "bg-black text-white hover:bg-gold-500 hover:text-black shadow-md hover:shadow-lg active:scale-95 cursor-pointer"
+                            }`}
+                          >
+                            {isAdded ? (
+                              <>
+                                <span className="text-sm">✓</span>
+                                <span>{t.added}</span>
+                              </>
+                            ) : (
+                              <>
+                                <ShoppingBag className="h-4 w-4" />
+                                <span>{t.addToOrder}</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })()}
+              </AnimatePresence>
+            </div>
+
+            {/* Left and Right Chevron buttons */}
+            <button
+              onClick={handlePrevSlide}
+              className="absolute left-0 sm:left-[-16px] top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-white border border-warm-brown-300/15 shadow-md hover:shadow-lg hover:border-gold-500 text-black hover:text-gold-600 transition-all cursor-pointer z-20 focus:outline-none active:scale-90"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="h-5 w-5 stroke-[2.5]" />
+            </button>
+            <button
+              onClick={handleNextSlide}
+              className="absolute right-0 sm:right-[-16px] top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full bg-white border border-warm-brown-300/15 shadow-md hover:shadow-lg hover:border-gold-500 text-black hover:text-gold-600 transition-all cursor-pointer z-20 focus:outline-none active:scale-90"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="h-5 w-5 stroke-[2.5]" />
+            </button>
+
+            {/* Slide indicators / pagination dots */}
+            <div className="flex justify-center items-center gap-2 mt-8">
+              {filteredDishes.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-2.5 transition-all duration-300 rounded-full ${
+                    activeSlide === idx
+                      ? "w-8 bg-gold-500"
+                      : "w-2.5 bg-warm-brown-300/30 hover:bg-warm-brown-300/60"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
+}
