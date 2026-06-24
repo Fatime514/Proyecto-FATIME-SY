@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const heroImg = "/src/assets/images/thieboudienne_hero_1782254477371.jpg";
+const heroImg = "/src/assets/images/yassa_poulet_hero_1782301879103.jpg";
 import { Language, translations } from "../types";
 import { ChevronDown, Utensils, CalendarRange, MapPin } from "lucide-react";
 

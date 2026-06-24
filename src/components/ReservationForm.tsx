@@ -89,10 +89,19 @@ export default function ReservationForm({ language }: ReservationFormProps) {
       };
 
       // Save to localStorage
-      const existing = localStorage.getItem("savannah_reservations");
-      const list = existing ? JSON.parse(existing) : [];
+      let list = [];
+      try {
+        const existing = localStorage.getItem("savannah_reservations");
+        list = existing ? JSON.parse(existing) : [];
+      } catch (e) {
+        console.error("Error parsing existing reservations", e);
+      }
       list.push(newReservation);
-      localStorage.setItem("savannah_reservations", JSON.stringify(list));
+      try {
+        localStorage.setItem("savannah_reservations", JSON.stringify(list));
+      } catch (e) {
+        console.warn("localStorage not accessible to save reservations:", e);
+      }
 
       setIsSubmitting(false);
       setConfirmedBooking(newReservation);

@@ -23,24 +23,42 @@ import { Language, CartItem, MenuItem } from "./types";
 export default function App() {
   // Load initial language preference from localStorage, default to 'en'
   const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem("mosdolli_language");
-    return (saved === "es" || saved === "en") ? saved : "en";
+    try {
+      const saved = localStorage.getItem("mosdolli_language");
+      return (saved === "es" || saved === "en") ? saved : "en";
+    } catch (e) {
+      console.warn("localStorage not accessible:", e);
+      return "en";
+    }
   });
 
   // Cart state management for online ordering
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem("mosdolli_cart");
-    return saved ? JSON.parse(saved) : [];
+    try {
+      const saved = localStorage.getItem("mosdolli_cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.warn("localStorage not accessible for cart:", e);
+      return [];
+    }
   });
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Sync state to localStorage
   useEffect(() => {
-    localStorage.setItem("mosdolli_language", language);
+    try {
+      localStorage.setItem("mosdolli_language", language);
+    } catch (e) {
+      console.warn("Failed to save language to localStorage:", e);
+    }
   }, [language]);
 
   useEffect(() => {
-    localStorage.setItem("mosdolli_cart", JSON.stringify(cart));
+    try {
+      localStorage.setItem("mosdolli_cart", JSON.stringify(cart));
+    } catch (e) {
+      console.warn("Failed to save cart to localStorage:", e);
+    }
   }, [cart]);
 
   // Handler functions for cart actions

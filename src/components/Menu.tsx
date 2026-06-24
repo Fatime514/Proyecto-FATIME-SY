@@ -4,7 +4,7 @@
  */
 
 import { useState, useMemo, useEffect } from "react";
-import { Search, ShoppingBag, Star, RefreshCw, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, ShoppingBag, Star, RefreshCw, Sparkles, ChevronLeft, ChevronRight, LayoutGrid, Sliders } from "lucide-react";
 import { MenuItem, Language, translations, signatureDishes } from "../types";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -19,6 +19,7 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [addedItems, setAddedItems] = useState<Record<string, boolean>>({});
   const [activeSlide, setActiveSlide] = useState(0);
+  const [layoutMode, setLayoutMode] = useState<"slides" | "grid">("slides");
 
   const categories = [
     { id: "all", label: t.categories.all },
@@ -129,6 +130,37 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
               </button>
             ))}
           </div>
+
+          {/* Layout Mode Selector Toggle (Slides vs Cards Grid) */}
+          <div className="flex justify-center items-center gap-2 pt-4 border-t border-warm-brown-300/10">
+            <span className="font-sans text-[10px] font-bold tracking-widest text-warm-brown-600 uppercase mr-1">
+              {language === "en" ? "Display:" : "Ver como:"}
+            </span>
+            <div className="bg-white rounded-lg p-1 border border-warm-brown-300/20 shadow-sm flex items-center">
+              <button
+                onClick={() => setLayoutMode("slides")}
+                className={`px-3 py-1.5 rounded-md font-sans text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 transition-all duration-200 cursor-pointer ${
+                  layoutMode === "slides"
+                    ? "bg-gold-500 text-black shadow-sm"
+                    : "text-neutral-600 hover:text-black hover:bg-neutral-50"
+                }`}
+              >
+                <Sliders className="h-3 w-3" />
+                <span>{language === "en" ? "Slideshow" : "Diapositivas"}</span>
+              </button>
+              <button
+                onClick={() => setLayoutMode("grid")}
+                className={`px-3 py-1.5 rounded-md font-sans text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 transition-all duration-200 cursor-pointer ${
+                  layoutMode === "grid"
+                    ? "bg-gold-500 text-black shadow-sm"
+                    : "text-neutral-600 hover:text-black hover:bg-neutral-50"
+                }`}
+              >
+                <LayoutGrid className="h-3 w-3" />
+                <span>{language === "en" ? "Cards Grid" : "Tarjetas"}</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Slideshow Presentation of Dishes */}
@@ -139,7 +171,7 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
               {t.noResults}
             </p>
           </div>
-        ) : (
+        ) : layoutMode === "slides" ? (
           <div className="relative max-w-5xl mx-auto px-2 sm:px-12">
             
             {/* Slide Frame container */}
@@ -279,6 +311,100 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
               ))}
             </div>
 
+          </div>
+        ) : (
+          /* Cards Grid View */
+          <div className="mx-auto max-w-7xl px-2 sm:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredDishes.map((dish) => {
+                const name = language === "en" ? dish.nameEn : dish.nameEs;
+                const desc = language === "en" ? dish.descriptionEn : dish.descriptionEs;
+                const tags = language === "en" ? dish.tagsEn : dish.tagsEs;
+                const isAdded = addedItems[dish.id];
+
+                return (
+                  <motion.div
+                    key={dish.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-2xl shadow-md hover:shadow-xl border border-warm-brown-300/10 overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-all duration-300"
+                  >
+                    {/* Dish Image */}
+                    <div className="relative h-48 overflow-hidden bg-neutral-100 shrink-0">
+                      <img
+                        src={dish.image}
+                        alt={name}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+                      {/* Rating */}
+                      <div className="absolute top-3 right-3 flex items-center gap-1 rounded bg-black/75 backdrop-blur-md px-2 py-1 text-gold-500 border border-gold-500/15">
+                        <Star className="h-3 w-3 fill-gold-500 text-gold-500" />
+                        <span className="font-sans text-[10px] font-bold mt-0.5">{dish.rating.toFixed(1)}</span>
+                      </div>
+
+                      {/* Category Tag */}
+                      <div className="absolute bottom-3 left-3 flex flex-wrap gap-1">
+                        {tags.slice(0, 2).map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="rounded bg-gold-500 text-black px-2 py-0.5 text-[9px] font-sans font-bold uppercase tracking-wider shadow-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Content details */}
+                    <div className="p-5 flex-grow flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-baseline gap-2">
+                          <h4 className="font-serif text-lg font-bold text-black tracking-wide leading-tight line-clamp-1">
+                            {name}
+                          </h4>
+                          <span className="font-sans text-base font-extrabold text-gold-600 shrink-0">
+                            {dish.price.toFixed(2)}€
+                          </span>
+                        </div>
+                        <p className="font-sans text-xs font-light text-neutral-600 leading-relaxed line-clamp-3">
+                          {desc}
+                        </p>
+                      </div>
+
+                      {/* Order action */}
+                      <div className="pt-4 mt-auto">
+                        <button
+                          onClick={() => handleAddToCart(dish)}
+                          disabled={isAdded}
+                          className={`w-full py-2.5 rounded-lg font-sans text-[11px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer ${
+                            isAdded
+                              ? "bg-green-600 text-white shadow-sm cursor-default"
+                              : "bg-black text-white hover:bg-gold-500 hover:text-black shadow-sm hover:shadow-md active:scale-95"
+                          }`}
+                        >
+                          {isAdded ? (
+                            <>
+                              <span className="text-xs">✓</span>
+                              <span>{t.added}</span>
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingBag className="h-3.5 w-3.5" />
+                              <span>{t.addToOrder}</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         )}
 
