@@ -243,9 +243,30 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
                           </div>
 
                           {/* Description details */}
-                          <p className="font-sans text-sm sm:text-base font-light text-neutral-700 leading-relaxed mb-8">
+                          <p className="font-sans text-sm sm:text-base font-light text-neutral-700 leading-relaxed mb-6">
                             {desc}
                           </p>
+
+                          {/* Cultural Spotlight for Thiéré */}
+                          {dish.id === "dish4" && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="mb-8 p-4 sm:p-5 rounded-xl bg-gold-50/60 border border-gold-500/20 text-warm-brown-900 text-xs sm:text-sm font-sans space-y-2.5 relative overflow-hidden"
+                            >
+                              <div className="absolute top-0 right-0 w-12 h-12 bg-gold-500/5 rounded-full translate-x-3 -translate-y-3 pointer-events-none" />
+                              <div className="flex items-center gap-2 font-bold text-gold-700 uppercase tracking-wider text-[10px] sm:text-[11px]">
+                                <Sparkles className="h-4 w-4 text-gold-600 animate-pulse" />
+                                <span>{language === "en" ? "Cultural Legacy" : "Legado Cultural"}</span>
+                              </div>
+                              <p className="leading-relaxed font-light text-neutral-800">
+                                {language === "en" 
+                                  ? "Thiéré is Senegal's traditional, iron-rich millet couscous, deeply woven into West African family culture. Preparing it is an ancient, sacred labor of love passed down through generations of women. Hand-rolled and steamed repeatedly over a rich broth, it is traditionally served as the centerpiece dish during Tamkharit (the Senegalese Islamic New Year) to wish for prosperity, abundance, and unity."
+                                  : "El Thiéré es el cuscús de mijo tradicional de Senegal, rico en hierro y profundamente arraigado en la cultura familiar de África Occidental. Su preparación es un trabajo sagrado transmitido de madres a hijas. Elaborado y enrollado a mano antes de ser cocido al vapor sobre un sabroso caldo, se sirve tradicionalmente durante la festividad del Tamkharit (el Año Nuevo Islámico senegalés) para simbolizar la unión, la prosperidad y la abundancia."
+                                }
+                              </p>
+                            </motion.div>
+                          )}
                         </div>
 
                         {/* Add To Cart Trigger */}
@@ -374,6 +395,19 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
                         <p className="font-sans text-xs font-light text-neutral-600 leading-relaxed line-clamp-3">
                           {desc}
                         </p>
+
+                        {/* Thiéré Cultural Spotlight Compact */}
+                        {dish.id === "dish4" && (
+                          <div className="mt-2 p-2.5 rounded bg-gold-50/70 border border-gold-500/10 text-[10px] leading-relaxed text-warm-brown-900 font-sans font-light">
+                            <span className="font-bold text-gold-700 block uppercase tracking-wider text-[8px] mb-0.5">
+                              {language === "en" ? "✨ Cultural Center of Tamkharit" : "✨ El Corazón del Tamkharit"}
+                            </span>
+                            {language === "en"
+                              ? "Traditional steamed millet made by hand to bring families together in celebration."
+                              : "Mijo hecho a mano cocido al vapor, elaborado tradicionalmente para unir a las familias."
+                            }
+                          </div>
+                        )}
                       </div>
 
                       {/* Order action */}

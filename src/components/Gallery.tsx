@@ -15,21 +15,21 @@ interface GalleryProps {
 const fullGalleryList: GalleryItem[] = [
   ...mockGallery,
   {
-    id: "gal7",
+    id: "gal_interior_table",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
     titleEn: "Premium Table Setup",
     titleEs: "Montaje de Mesa Premium",
     category: "interior"
   },
   {
-    id: "gal8",
+    id: "gal_events_music",
     image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80",
     titleEn: "Annual Cultural Music Festival",
     titleEs: "Festival Anual de Música Cultural",
     category: "events"
   },
   {
-    id: "gal9",
+    id: "gal_culture_artifacts",
     image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80",
     titleEn: "Authentic African Hand-Carved Artifacts",
     titleEs: "Artefactos Tallados a Mano Auténticos",
@@ -159,7 +159,7 @@ export default function Gallery({ language }: GalleryProps) {
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 rounded-full p-2.5 bg-[#202020] text-cream hover:bg-gold-500 hover:text-black transition-all"
+              className="absolute top-6 right-6 rounded-full p-2.5 bg-black border border-neutral-800 text-cream hover:bg-gold-500 hover:text-black transition-all shadow-lg"
               aria-label="Close lightbox"
             >
               <X className="h-6 w-6" />
@@ -168,7 +168,7 @@ export default function Gallery({ language }: GalleryProps) {
             {/* Prev Image Control */}
             <button
               onClick={handlePrev}
-              className="absolute left-6 rounded-full p-3 bg-[#202020] text-cream hover:bg-gold-500 hover:text-black transition-all"
+              className="absolute left-6 rounded-full p-3 bg-black border border-neutral-800 text-cream hover:bg-gold-500 hover:text-black transition-all shadow-lg"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -177,7 +177,7 @@ export default function Gallery({ language }: GalleryProps) {
             {/* Next Image Control */}
             <button
               onClick={handleNext}
-              className="absolute right-6 rounded-full p-3 bg-[#202020] text-cream hover:bg-gold-500 hover:text-black transition-all"
+              className="absolute right-6 rounded-full p-3 bg-black border border-neutral-800 text-cream hover:bg-gold-500 hover:text-black transition-all shadow-lg"
               aria-label="Next image"
             >
               <ChevronRight className="h-6 w-6" />

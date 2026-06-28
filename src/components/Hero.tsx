@@ -87,13 +87,13 @@ export default function Hero({ language, onScrollTo }: HeroProps) {
           </div>
         </div>
 
-        {/* Right Column: Custom Arched Image Showcase */}
+        {/* Right Column: Custom Box Image Showcase */}
         <div className="lg:col-span-5 relative flex justify-center items-center py-6">
-          {/* Secondary Decorative Frame Shadow behind the Main Arch */}
-          <div className="absolute inset-0 m-auto translate-x-3 translate-y-3 rounded-t-[160px] border border-gold-500/15 aspect-[4/5] w-full max-w-[320px] md:max-w-[360px] pointer-events-none z-0" />
+          {/* Secondary Decorative Frame Shadow behind the Main Box */}
+          <div className="absolute inset-0 m-auto translate-x-3 translate-y-3 rounded-2xl border border-gold-500/15 aspect-square w-full max-w-[320px] md:max-w-[360px] pointer-events-none z-0" />
 
-          {/* Main Arched Frame */}
-          <div className="rounded-t-[160px] border-[10px] border-white shadow-2xl relative overflow-hidden aspect-[4/5] w-full max-w-[320px] md:max-w-[360px] z-10 hover:scale-[1.01] transition-transform duration-500">
+          {/* Main Box Frame */}
+          <div className="rounded-2xl border-[10px] border-white shadow-2xl relative overflow-hidden aspect-square w-full max-w-[320px] md:max-w-[360px] z-10 hover:scale-[1.01] transition-transform duration-500">
             <img
               src={heroImg}
               alt="MOS-DOLLI Restaurant Atmosphere"

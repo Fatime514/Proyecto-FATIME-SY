@@ -134,16 +134,16 @@ export default function App() {
           language={language} 
         />
 
-        {/* About Us Narrative and Interior Showcase */}
-        <About 
-          language={language} 
-          onScrollTo={handleScrollToSection} 
-        />
-
         {/* Interactive Menu / Signature Dishes */}
         <Menu 
           language={language} 
           onAddToOrder={handleAddToOrder} 
+        />
+
+        {/* About Us Narrative and Interior Showcase */}
+        <About 
+          language={language} 
+          onScrollTo={handleScrollToSection} 
         />
 
         {/* Customer Testimonials & Ratings */}

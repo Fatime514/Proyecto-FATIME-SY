@@ -34,23 +34,7 @@ export default function Testimonials({ language }: TestimonialsProps) {
           <div className="mx-auto mt-4 h-[1px] w-16 bg-warm-brown-500/30" />
         </div>
 
-        {/* Google Reviews Integration Card */}
-        <div className="mb-14 max-w-md mx-auto rounded-xl bg-warm-brown-50 p-6 border border-warm-brown-500/15 shadow-sm text-center">
-          <div className="flex items-center justify-center gap-1.5 text-gold-500 mb-2">
-            {[...Array(5)].map((_, idx) => (
-              <Star key={idx} className="h-5 w-5 fill-gold-500 text-gold-500" />
-            ))}
-          </div>
-          <h3 className="font-serif text-lg font-bold text-dark-charcoal mt-1">
-            4.9 / 5.0
-          </h3>
-          <p className="font-sans text-xs text-warm-brown-500 tracking-wider uppercase font-semibold mt-1">
-            {t.googleRating}
-          </p>
-          <p className="font-sans text-[11px] text-dark-charcoal/60 mt-0.5">
-            {t.basedOn}
-          </p>
-        </div>
+
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

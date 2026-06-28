@@ -434,6 +434,19 @@ export const translations = {
 // Signature dishes raw data with Unsplash high quality food photos
 export const signatureDishes: MenuItem[] = [
   {
+    id: "dish4",
+    nameEn: "Couscous Tamkarit (Thiéré Tamkarit)",
+    nameEs: "Cuscús Tamkarit (Thiéré)",
+    descriptionEn: "A traditional celebratory Senegalese millet couscous (Thiéré) steamed with deep-rooted love, served with a rich, aromatic sauce of tender beef, sweet potato, cassava, cabbage, and sweet raisins.",
+    descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
+    price: 16.50,
+    category: "mains",
+    image: "/src/assets/images/regenerated_image_1782649008739.jpg",
+    rating: 4.8,
+    tagsEn: ["Tamkarit Festive", "Traditional Millet"],
+    tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
+  },
+  {
     id: "dish1",
     nameEn: "Thieboudienne (Fish & Rice)",
     nameEs: "Thieboudienne (Pescado y Arroz)",
@@ -454,7 +467,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Un estofado rico, cremoso y aterciopelado de crema de cacahuete de África Occidental, cocinado con trozos tiernos de ternera, batatas y zanahorias, servido con arroz blanco.",
     price: 16.00,
     category: "mains",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+    image: "/src/assets/images/thiere_millet_couscous_1782649218458.jpg",
     rating: 4.8,
     tagsEn: ["Peanut Stew", "Comfort Food"],
     tagsEs: ["Guiso de Cacahuete", "Poco Picante"]
@@ -471,19 +484,6 @@ export const signatureDishes: MenuItem[] = [
     rating: 4.9,
     tagsEn: ["Tangy & Savory", "Popular"],
     tagsEs: ["Ácido y Sabroso", "Popular"]
-  },
-  {
-    id: "dish4",
-    nameEn: "Couscous Tamkarit (Thiéré Tamkarit)",
-    nameEs: "Cuscús Tamkarit (Thiéré)",
-    descriptionEn: "A traditional celebratory Senegalese millet couscous (Thiéré) steamed with deep-rooted love, served with a rich, aromatic sauce of tender beef, sweet potato, cassava, cabbage, and sweet raisins.",
-    descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
-    price: 16.50,
-    category: "mains",
-    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80",
-    rating: 4.8,
-    tagsEn: ["Tamkarit Festive", "Traditional Millet"],
-    tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
   },
   {
     id: "dish9",
@@ -638,7 +638,7 @@ export const mockGallery: GalleryItem[] = [
   },
   {
     id: "gal3",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+    image: "/src/assets/images/thiere_millet_couscous_1782649218458.jpg",
     titleEn: "Mafe Traditional Peanut Stew",
     titleEs: "Estofado de Cacahuete Mafe",
     category: "food"

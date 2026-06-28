@@ -40,8 +40,8 @@ export default function Navbar({
 
   const navItems = [
     { label: t.nav.home, id: "home" },
-    { label: t.nav.about, id: "about" },
     { label: t.nav.menu, id: "menu" },
+    { label: t.nav.about, id: "about" },
     { label: t.nav.gallery, id: "gallery" },
     { label: t.nav.events, id: "events" },
     { label: t.nav.reservations, id: "reservations" },
