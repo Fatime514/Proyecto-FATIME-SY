@@ -441,7 +441,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
     price: 16.50,
     category: "mains",
-    image: "/src/assets/images/regenerated_image_1782649008739.jpg",
+    image: "/assets/images/regenerated_image_1782649008739.jpg",
     rating: 4.8,
     tagsEn: ["Tamkarit Festive", "Traditional Millet"],
     tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
@@ -454,7 +454,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El plato nacional de Senegal. Arroz partido aromático cocinado en un rico caldo de tomate, hierbas y especias, servido con pescado fresco, yuca, zanahoria, berenjena y col.",
     price: 17.50,
     category: "mains",
-    image: "/src/assets/images/thieboudienne_hero_1782254477371.jpg",
+    image: "/assets/images/thieboudienne_hero_1782254477371.jpg",
     rating: 4.9,
     tagsEn: ["National Dish", "Senegalese", "Top Seller"],
     tagsEs: ["Plato Nacional", "Senegalés", "Más Vendido"]
@@ -467,7 +467,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Un estofado rico, cremoso y aterciopelado de crema de cacahuete de África Occidental, cocinado con trozos tiernos de ternera, batatas y zanahorias, servido con arroz blanco.",
     price: 16.00,
     category: "mains",
-    image: "/src/assets/images/thiere_millet_couscous_1782649218458.jpg",
+    image: "/assets/images/thiere_millet_couscous_1782649218458.jpg",
     rating: 4.8,
     tagsEn: ["Peanut Stew", "Comfort Food"],
     tagsEs: ["Guiso de Cacahuete", "Poco Picante"]
@@ -480,7 +480,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Tierno pollo marinado en una mezcla ácida de jugo de limón fresco, ajo, mostaza y una abundancia de cebollas caramelizadas, servido con arroz blanco.",
     price: 15.50,
     category: "mains",
-    image: "/src/assets/images/yassa_poulet_hero_1782301879103.jpg",
+    image: "/assets/images/yassa_poulet_hero_1782301879103.jpg",
     rating: 4.9,
     tagsEn: ["Tangy & Savory", "Popular"],
     tagsEs: ["Ácido y Sabroso", "Popular"]
@@ -493,7 +493,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El postre tradicional senegalés más famoso, rico y cremoso, elaborado con cuscús de mijo dulce al vapor mezclado con un yogur aterciopelado endulzado con vainilla, servido bien frío.",
     price: 5.50,
     category: "desserts",
-    image: "/src/assets/images/thiakry_dessert_1782304121792.jpg",
+    image: "/assets/images/thiakry_dessert_1782304121792.jpg",
     rating: 5.0,
     tagsEn: ["Traditional Dessert", "Sweet & Creamy"],
     tagsEs: ["Postre Tradicional", "Dulce y Cremoso"]
@@ -506,7 +506,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "La bebida nacional de Senegal. Un refrescante té rojo dulce elaborado a partir de flores de hibisco secas, infusionado con menta fresca y un toque de flor de azahar.",
     price: 3.50,
     category: "desserts",
-    image: "/src/assets/images/bissap_drink_hero_1782311596810.jpg",
+    image: "/assets/images/bissap_drink_hero_1782311596810.jpg",
     rating: 5.0,
     tagsEn: ["Hibiscus", "Very Refreshing"],
     tagsEs: ["Hibisco", "Muy Refrescante"]
@@ -519,7 +519,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Un exótico zumo verde rico en nutrientes hecho de la pulpa de la fruta silvestre Ditakh, conocido por su inconfundible sabor agridulce.",
     price: 4.00,
     category: "desserts",
-    image: "/src/assets/images/ditakh_juice_hero_1782311631507.jpg",
+    image: "/assets/images/ditakh_juice_hero_1782311631507.jpg",
     rating: 4.8,
     tagsEn: ["Wild Fruit", "Exotic"],
     tagsEs: ["Fruta Silvestre", "Exótico"]
@@ -532,7 +532,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Un zumo tradicional espeso, aterciopelado y naturalmente dulce elaborado a partir del fruto del majestuoso árbol Baobab africano, rico en Vitamina C y calcio con un toque de vainilla.",
     price: 4.00,
     category: "desserts",
-    image: "/src/assets/images/bouye_juice_hero_1782311579153.jpg",
+    image: "/assets/images/bouye_juice_hero_1782311579153.jpg",
     rating: 5.0,
     tagsEn: ["Baobab Fruit", "Creamy & Sweet"],
     tagsEs: ["Fruto de Baobab", "Cremoso y Dulce"]
@@ -545,7 +545,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Una espectacular tabla de degustación que incluye nuestras cuatro emblemáticas bebidas artesanales: vibrante Bissap rojo, cremoso Bouye beige, picante zumo de jengibre y exótico zumo de tamarindo.",
     price: 6.50,
     category: "desserts",
-    image: "/src/assets/images/drinks_sampler_hero_1782311613885.jpg",
+    image: "/assets/images/drinks_sampler_hero_1782311613885.jpg",
     rating: 4.9,
     tagsEn: ["Tasting Board", "Highly Recommended"],
     tagsEs: ["Tabla Degustación", "Muy Recomendado"]
@@ -624,49 +624,49 @@ export const mockTestimonials: Testimonial[] = [
 export const mockGallery: GalleryItem[] = [
   {
     id: "gal1",
-    image: "/src/assets/images/thieboudienne_hero_1782254477371.jpg",
+    image: "/assets/images/thieboudienne_hero_1782254477371.jpg",
     titleEn: "Fresh Thieboudienne National Dish",
     titleEs: "Plato de Thieboudienne Fresco",
     category: "food"
   },
   {
     id: "gal2",
-    image: "/src/assets/images/yassa_poulet_hero_1782301879103.jpg",
+    image: "/assets/images/yassa_poulet_hero_1782301879103.jpg",
     titleEn: "Chicken Yassa with Caramelized Onions",
     titleEs: "Pollo Yassa con Cebolla Caramelizada",
     category: "food"
   },
   {
     id: "gal3",
-    image: "/src/assets/images/thiere_millet_couscous_1782649218458.jpg",
+    image: "/assets/images/thiere_millet_couscous_1782649218458.jpg",
     titleEn: "Mafe Traditional Peanut Stew",
     titleEs: "Estofado de Cacahuete Mafe",
     category: "food"
   },
   {
     id: "gal4",
-    image: "/src/assets/images/ditakh_juice_hero_1782311631507.jpg",
+    image: "/assets/images/ditakh_juice_hero_1782311631507.jpg",
     titleEn: "Ditakh Traditional Exotic Juice",
     titleEs: "Zumo Exótico Tradicional de Ditakh",
     category: "food"
   },
   {
     id: "gal5",
-    image: "/src/assets/images/drinks_sampler_hero_1782311613885.jpg",
+    image: "/assets/images/drinks_sampler_hero_1782311613885.jpg",
     titleEn: "Artisanal Drinks Tasting Board",
     titleEs: "Tabla Degustación de Bebidas Artesanales",
     category: "food"
   },
   {
     id: "gal6",
-    image: "/src/assets/images/bissap_drink_hero_1782311596810.jpg",
+    image: "/assets/images/bissap_drink_hero_1782311596810.jpg",
     titleEn: "Bissap Sweet Hibiscus Drink",
     titleEs: "Bissap Dulce de Flor de Jamaica",
     category: "food"
   },
   {
     id: "gal7",
-    image: "/src/assets/images/bouye_juice_hero_1782311579153.jpg",
+    image: "/assets/images/bouye_juice_hero_1782311579153.jpg",
     titleEn: "Sweet Bouye Baobab Juice",
     titleEs: "Zumo Dulce de Bouye Baobab",
     category: "food"

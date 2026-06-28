@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const interiorImg = "/src/assets/images/restaurant_interior_1782237993083.jpg";
+const interiorImg = "/assets/images/restaurant_interior_1782237993083.jpg";
 import { Language, translations } from "../types";
 import { Coffee, ShieldCheck, MapPin } from "lucide-react";
 
