@@ -8,6 +8,41 @@ import { Search, ShoppingBag, Star, RefreshCw, Sparkles, ChevronLeft, ChevronRig
 import { MenuItem, Language, translations, signatureDishes } from "../types";
 import { motion, AnimatePresence } from "motion/react";
 
+const culturalSpotlights: Record<string, { titleEn: string; titleEs: string; textEn: string; textEs: string; compactEn: string; compactEs: string }> = {
+  dish1: {
+    titleEn: "✨ The Soul of Senegal",
+    titleEs: "✨ El Alma de Senegal",
+    textEn: "Thieboudienne is the official national dish of Senegal, originating in the coastal town of Saint-Louis. It represents 'Teranga' (hospitality), traditionally shared in a single large platter around family and guests.",
+    textEs: "El Thieboudienne es el plato nacional oficial de Senegal, con origen en la ciudad de Saint-Louis. Representa la 'Teranga' (hospitalidad), compartiéndose tradicionalmente en una gran bandeja entre familiares e invitados.",
+    compactEn: "Senegal's beloved national dish, representing Teranga (hospitality) and shared unity.",
+    compactEs: "El amado plato nacional de Senegal, que representa la Teranga (hospitalidad) y la unión."
+  },
+  dish2: {
+    titleEn: "✨ A Comfort Classic",
+    titleEs: "✨ Un Clásico Reconfortante",
+    textEn: "Mafe is a rich, satisfying peanut stew with roots in the Mandinka culture. Highly popular across West Africa, it celebrates the bountiful harvest of peanut crops with warm, nutty comfort.",
+    textEs: "El Mafe es un guiso rico y satisfactorio a base de cacahuete, con profundas raíces en la cultura Mandinga. Muy popular en África Occidental, celebra las cosechas tradicionales brindando calidez.",
+    compactEn: "A comforting peanut stew celebrating the rich historic harvests of West Africa.",
+    compactEs: "Un reconfortante estofado de cacahuete que celebra las cosechas de África Occidental."
+  },
+  dish3: {
+    titleEn: "✨ Citrus & Spice Legacy",
+    titleEs: "✨ El Legado de Cítricos y Especias",
+    textEn: "Yassa Poulet comes from the lush Casamance region in southern Senegal. The secret to its iconic tang is a slow marinade of heaps of caramelized sweet onions in fresh lemon juice, mustard, and garlic.",
+    textEs: "El Yassa Poulet proviene de la exuberante región de Casamance al sur de Senegal. El secreto de su sabor cítrico icónico es una marinada lenta de abundante cebolla caramelizada, limón, mostaza y ajo.",
+    compactEn: "A vibrant citrus and caramelized onion masterpiece from the Casamance region.",
+    compactEs: "Vibrante obra maestra de cítricos y cebolla de la región de Casamance."
+  },
+  dish4: {
+    titleEn: "✨ Cultural Legacy of Thiéré",
+    titleEs: "✨ Legado Cultural del Thiéré",
+    textEn: "Thiéré is Senegal's traditional, iron-rich millet couscous, deeply woven into West African family culture. Hand-rolled and steamed repeatedly, it is traditionally served as the centerpiece dish during Tamkharit (Islamic New Year).",
+    textEs: "El Thiéré es el cuscús de mijo tradicional de Senegal, rico en hierro y profundamente arraigado en la cultura familiar. Elaborado a mano y cocido al vapor, se sirve durante el Tamkharit (Año Nuevo Islámico).",
+    compactEn: "Traditional steamed millet made by hand to bring families together in celebration.",
+    compactEs: "Mijo hecho a mano cocido al vapor, elaborado tradicionalmente para unir a las familias."
+  }
+};
+
 interface MenuProps {
   language: Language;
   onAddToOrder: (dish: MenuItem) => void;
@@ -24,8 +59,7 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
   const categories = [
     { id: "all", label: t.categories.all },
     { id: "mains", label: t.categories.mains },
-    { id: "starters", label: t.categories.starters },
-    { id: "sides", label: t.categories.sides },
+    { id: "drinks", label: t.categories.drinks },
     { id: "desserts", label: t.categories.desserts },
   ];
 
@@ -247,8 +281,8 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
                             {desc}
                           </p>
 
-                          {/* Cultural Spotlight for Thiéré */}
-                          {dish.id === "dish4" && (
+                          {/* Dynamic Cultural Spotlight */}
+                          {culturalSpotlights[dish.id] && (
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -257,13 +291,16 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
                               <div className="absolute top-0 right-0 w-12 h-12 bg-gold-500/5 rounded-full translate-x-3 -translate-y-3 pointer-events-none" />
                               <div className="flex items-center gap-2 font-bold text-gold-700 uppercase tracking-wider text-[10px] sm:text-[11px]">
                                 <Sparkles className="h-4 w-4 text-gold-600 animate-pulse" />
-                                <span>{language === "en" ? "Cultural Legacy" : "Legado Cultural"}</span>
+                                <span>
+                                  {language === "en" 
+                                    ? culturalSpotlights[dish.id].titleEn 
+                                    : culturalSpotlights[dish.id].titleEs}
+                                </span>
                               </div>
                               <p className="leading-relaxed font-light text-neutral-800">
                                 {language === "en" 
-                                  ? "Thiéré is Senegal's traditional, iron-rich millet couscous, deeply woven into West African family culture. Preparing it is an ancient, sacred labor of love passed down through generations of women. Hand-rolled and steamed repeatedly over a rich broth, it is traditionally served as the centerpiece dish during Tamkharit (the Senegalese Islamic New Year) to wish for prosperity, abundance, and unity."
-                                  : "El Thiéré es el cuscús de mijo tradicional de Senegal, rico en hierro y profundamente arraigado en la cultura familiar de África Occidental. Su preparación es un trabajo sagrado transmitido de madres a hijas. Elaborado y enrollado a mano antes de ser cocido al vapor sobre un sabroso caldo, se sirve tradicionalmente durante la festividad del Tamkharit (el Año Nuevo Islámico senegalés) para simbolizar la unión, la prosperidad y la abundancia."
-                                }
+                                  ? culturalSpotlights[dish.id].textEn 
+                                  : culturalSpotlights[dish.id].textEs}
                               </p>
                             </motion.div>
                           )}
@@ -396,15 +433,15 @@ export default function Menu({ language, onAddToOrder }: MenuProps) {
                           {desc}
                         </p>
 
-                        {/* Thiéré Cultural Spotlight Compact */}
-                        {dish.id === "dish4" && (
+                        {/* Dynamic Cultural Spotlight Compact */}
+                        {culturalSpotlights[dish.id] && (
                           <div className="mt-2 p-2.5 rounded bg-gold-50/70 border border-gold-500/10 text-[10px] leading-relaxed text-warm-brown-900 font-sans font-light">
                             <span className="font-bold text-gold-700 block uppercase tracking-wider text-[8px] mb-0.5">
-                              {language === "en" ? "✨ Cultural Center of Tamkharit" : "✨ El Corazón del Tamkharit"}
+                              {language === "en" ? culturalSpotlights[dish.id].titleEn : culturalSpotlights[dish.id].titleEs}
                             </span>
                             {language === "en"
-                              ? "Traditional steamed millet made by hand to bring families together in celebration."
-                              : "Mijo hecho a mano cocido al vapor, elaborado tradicionalmente para unir a las familias."
+                              ? culturalSpotlights[dish.id].compactEn
+                              : culturalSpotlights[dish.id].compactEs
                             }
                           </div>
                         )}

@@ -12,7 +12,7 @@ export interface MenuItem {
   descriptionEn: string;
   descriptionEs: string;
   price: number;
-  category: "mains" | "starters" | "sides" | "desserts";
+  category: "mains" | "starters" | "sides" | "desserts" | "drinks";
   image: string;
   rating: number;
   tagsEn: string[];
@@ -114,7 +114,7 @@ export const translations = {
       titlePre: "MOS-DOLLI — A",
       titleHighlight: "Love for Senegal",
       text1: "At MOS-DOLLI (which translates from Wolof as 'taste and repeat' or 'savor and add'), we share the soul of Senegal through its most delicious culinary masterpieces. Our dishes are prepared following age-old family recipes passed down through generations.",
-      text2: "Located on Paseo de San José in the historic center of Vegueta, Las Palmas, our kitchen is inspired by traditional culinary secrets of famous channels like 'Toggu ya Isseu' on YouTube, bringing authentic Senegalese home cooking directly to you.",
+      text2: "Located on Paseo de San José in the historic center of Vegueta, Las Palmas, our kitchen is dedicated to bringing authentic, traditional Senegalese home cooking directly to you.",
       chefNote: "“Teranga is not just a word; it is our way of living, sharing, and cooking with love.”",
       btn: "Our Journey",
     },
@@ -127,7 +127,8 @@ export const translations = {
         mains: "Senegalese Dishes",
         starters: "Starters / Traditional",
         sides: "Sides",
-        desserts: "Drinks & Refreshments",
+        desserts: "Desserts",
+        drinks: "Senegalese Drinks",
       },
       noResults: "No dishes or drinks found matching your search. Try another query!",
       addToOrder: "Add to Order",
@@ -295,7 +296,7 @@ export const translations = {
       titlePre: "MOS-DOLLI — Amor por la",
       titleHighlight: "Cocina de Senegal",
       text1: "En MOS-DOLLI (que se traduce del wolof como 'probar y repetir' o 'degustar y añadir'), compartimos la riqueza de la cocina de Senegal a través de cada plato tradicional. Cocinamos respetando las recetas familiares pasadas de generación en generación.",
-      text2: "Ubicado en el Paseo de San José en el hermoso y tradicional barrio de Vegueta en Las Palmas, nuestra cocina se inspira en el saber hacer y recetas caseras de canales entrañables como 'Toggu ya Isseu' en YouTube, cocinando con todo el amor.",
+      text2: "Ubicado en el Paseo de San José, en el corazón del centro histórico de Vegueta en Las Palmas, nuestra cocina está dedicada a ofrecerte el auténtico y reconfortante sabor tradicional de la cocina senegalesa.",
       chefNote: "“La Teranga no es solo una palabra; es nuestra forma de recibirte, compartir y cocinar con todo el corazón.”",
       btn: "Conócenos Más",
     },
@@ -308,7 +309,8 @@ export const translations = {
         mains: "Platos Senegaleses",
         starters: "Entrantes / Tradicionales",
         sides: "Guarniciones",
-        desserts: "Refrescos y Bebidas",
+        desserts: "Postres",
+        drinks: "Bebidas Senegalesas",
       },
       noResults: "No se encontraron platos ni bebidas que coincidan con tu búsqueda. ¡Prueba otra palabra!",
       addToOrder: "Añadir al Pedido",
@@ -434,19 +436,6 @@ export const translations = {
 // Signature dishes raw data with Unsplash high quality food photos
 export const signatureDishes: MenuItem[] = [
   {
-    id: "dish4",
-    nameEn: "Couscous Tamkarit (Thiéré Tamkarit)",
-    nameEs: "Cuscús Tamkarit (Thiéré)",
-    descriptionEn: "A traditional celebratory Senegalese millet couscous (Thiéré) steamed with deep-rooted love, served with a rich, aromatic sauce of tender beef, sweet potato, cassava, cabbage, and sweet raisins.",
-    descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
-    price: 16.50,
-    category: "mains",
-    image: "/assets/images/regenerated_image_1782649008739.jpg",
-    rating: 4.8,
-    tagsEn: ["Tamkarit Festive", "Traditional Millet"],
-    tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
-  },
-  {
     id: "dish1",
     nameEn: "Thieboudienne (Fish & Rice)",
     nameEs: "Thieboudienne (Pescado y Arroz)",
@@ -454,7 +443,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El plato nacional de Senegal. Arroz partido aromático cocinado en un rico caldo de tomate, hierbas y especias, servido con pescado fresco, yuca, zanahoria, berenjena y col.",
     price: 17.50,
     category: "mains",
-    image: "/assets/images/thieboudienne_hero_1782254477371.jpg",
+    image: "/assets/images/regenerated_image_1782663993868.png",
     rating: 4.9,
     tagsEn: ["National Dish", "Senegalese", "Top Seller"],
     tagsEs: ["Plato Nacional", "Senegalés", "Más Vendido"]
@@ -467,7 +456,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Un estofado rico, cremoso y aterciopelado de crema de cacahuete de África Occidental, cocinado con trozos tiernos de ternera, batatas y zanahorias, servido con arroz blanco.",
     price: 16.00,
     category: "mains",
-    image: "/assets/images/thiere_millet_couscous_1782649218458.jpg",
+    image: "/assets/images/mafe_stew_hero_1782734070520.jpg",
     rating: 4.8,
     tagsEn: ["Peanut Stew", "Comfort Food"],
     tagsEs: ["Guiso de Cacahuete", "Poco Picante"]
@@ -484,6 +473,19 @@ export const signatureDishes: MenuItem[] = [
     rating: 4.9,
     tagsEn: ["Tangy & Savory", "Popular"],
     tagsEs: ["Ácido y Sabroso", "Popular"]
+  },
+  {
+    id: "dish4",
+    nameEn: "Couscous Tamkarit (Thiéré Tamkarit)",
+    nameEs: "Cuscús Tamkarit (Thiéré)",
+    descriptionEn: "A traditional celebratory Senegalese millet couscous (Thiéré) steamed with deep-rooted love, served with a rich, aromatic sauce of tender beef, sweet potato, cassava, cabbage, and sweet raisins.",
+    descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
+    price: 16.50,
+    category: "mains",
+    image: "/assets/images/regenerated_image_1782649008739.jpg",
+    rating: 4.8,
+    tagsEn: ["Tamkarit Festive", "Traditional Millet"],
+    tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
   },
   {
     id: "dish9",
@@ -505,7 +507,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "Senegal's beloved national beverage. A refreshing sweet red tea brewed from dried hibiscus flowers, infused with fresh mint and a touch of orange blossom.",
     descriptionEs: "La bebida nacional de Senegal. Un refrescante té rojo dulce elaborado a partir de flores de hibisco secas, infusionado con menta fresca y un toque de flor de azahar.",
     price: 3.50,
-    category: "desserts",
+    category: "drinks",
     image: "/assets/images/bissap_drink_hero_1782311596810.jpg",
     rating: 5.0,
     tagsEn: ["Hibiscus", "Very Refreshing"],
@@ -518,7 +520,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "An exotic, nutrient-rich refreshing green juice made from the pulp of the wild Ditakh fruit, known for its unique sweet-and-sour flavor.",
     descriptionEs: "Un exótico zumo verde rico en nutrientes hecho de la pulpa de la fruta silvestre Ditakh, conocido por su inconfundible sabor agridulce.",
     price: 4.00,
-    category: "desserts",
+    category: "drinks",
     image: "/assets/images/ditakh_juice_hero_1782311631507.jpg",
     rating: 4.8,
     tagsEn: ["Wild Fruit", "Exotic"],
@@ -531,7 +533,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "A thick, velvety, and naturally sweet traditional juice made from the fruit of the majestic African Baobab tree, rich in Vitamin C and calcium with a hint of vanilla.",
     descriptionEs: "Un zumo tradicional espeso, aterciopelado y naturalmente dulce elaborado a partir del fruto del majestuoso árbol Baobab africano, rico en Vitamina C y calcio con un toque de vainilla.",
     price: 4.00,
-    category: "desserts",
+    category: "drinks",
     image: "/assets/images/bouye_juice_hero_1782311579153.jpg",
     rating: 5.0,
     tagsEn: ["Baobab Fruit", "Creamy & Sweet"],
@@ -544,7 +546,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "A spectacular tasting board featuring our four signature house-crafted artisanal drinks: vibrant red Bissap, creamy beige Bouye, tangy yellow ginger juice, and exotic brown tamarind juice.",
     descriptionEs: "Una espectacular tabla de degustación que incluye nuestras cuatro emblemáticas bebidas artesanales: vibrante Bissap rojo, cremoso Bouye beige, picante zumo de jengibre y exótico zumo de tamarindo.",
     price: 6.50,
-    category: "desserts",
+    category: "drinks",
     image: "/assets/images/drinks_sampler_hero_1782311613885.jpg",
     rating: 4.9,
     tagsEn: ["Tasting Board", "Highly Recommended"],
@@ -557,7 +559,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "A spicy, sweet, and highly energizing fresh ginger juice sweetened with pineapple and a hint of lime.",
     descriptionEs: "Un zumo de jengibre fresco picante, dulce y muy energizante, endulzado con piña y un toque de lima.",
     price: 3.50,
-    category: "desserts",
+    category: "drinks",
     image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800&q=80",
     rating: 4.9,
     tagsEn: ["Spicy & Fresh", "Energizing"],
@@ -570,7 +572,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEn: "Traditional Senegalese coffee spiced with Selim pepper grains (Djar) and aromatic cloves, roasted and brewed sweet.",
     descriptionEs: "Café tradicional senegalés especiado con granos de pimienta de Selim (Djar) y clavo aromático, tostado y servido dulce.",
     price: 3.00,
-    category: "desserts",
+    category: "drinks",
     image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=800&q=80",
     rating: 4.9,
     tagsEn: ["Spiced", "Traditional"],
@@ -624,7 +626,7 @@ export const mockTestimonials: Testimonial[] = [
 export const mockGallery: GalleryItem[] = [
   {
     id: "gal1",
-    image: "/assets/images/thieboudienne_hero_1782254477371.jpg",
+    image: "/assets/images/regenerated_image_1782663993868.png",
     titleEn: "Fresh Thieboudienne National Dish",
     titleEs: "Plato de Thieboudienne Fresco",
     category: "food"
@@ -638,7 +640,7 @@ export const mockGallery: GalleryItem[] = [
   },
   {
     id: "gal3",
-    image: "/assets/images/thiere_millet_couscous_1782649218458.jpg",
+    image: "/assets/images/mafe_stew_hero_1782734070520.jpg",
     titleEn: "Mafe Traditional Peanut Stew",
     titleEs: "Estofado de Cacahuete Mafe",
     category: "food"
