@@ -443,7 +443,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El plato nacional de Senegal. Arroz partido aromático cocinado en un rico caldo de tomate, hierbas y especias, servido con pescado fresco, yuca, zanahoria, berenjena y col.",
     price: 17.50,
     category: "mains",
-    image: "/assets/images/regenerated_image_1782663993868.png",
+    image: "/assets/images/regenerated_image_1782921685545.jpg",
     rating: 4.9,
     tagsEn: ["National Dish", "Senegalese", "Top Seller"],
     tagsEs: ["Plato Nacional", "Senegalés", "Más Vendido"]
@@ -469,7 +469,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "Tierno pollo marinado en una mezcla ácida de jugo de limón fresco, ajo, mostaza y una abundancia de cebollas caramelizadas, servido con arroz blanco.",
     price: 15.50,
     category: "mains",
-    image: "/assets/images/yassa_poulet_hero_1782301879103.jpg",
+    image: "/assets/images/yassa_poulet_chicken_1782926394937.jpg",
     rating: 4.9,
     tagsEn: ["Tangy & Savory", "Popular"],
     tagsEs: ["Ácido y Sabroso", "Popular"]
@@ -482,7 +482,7 @@ export const signatureDishes: MenuItem[] = [
     descriptionEs: "El tradicional cuscús de mijo senegalés (Thiéré) cocinado al vapor, servido con una salsa ricamente condimentada con tierna carne de ternera, batata, yuca, col y pasas dulce, típico de la festividad de Tamkharit.",
     price: 16.50,
     category: "mains",
-    image: "/assets/images/regenerated_image_1782649008739.jpg",
+    image: "/assets/images/thiere_millet_couscous_1782926375089.jpg",
     rating: 4.8,
     tagsEn: ["Tamkarit Festive", "Traditional Millet"],
     tagsEs: ["Festivo Tamkarit", "Mijo Tradicional"]
@@ -626,14 +626,14 @@ export const mockTestimonials: Testimonial[] = [
 export const mockGallery: GalleryItem[] = [
   {
     id: "gal1",
-    image: "/assets/images/regenerated_image_1782663993868.png",
+    image: "/assets/images/regenerated_image_1782921685545.jpg",
     titleEn: "Fresh Thieboudienne National Dish",
     titleEs: "Plato de Thieboudienne Fresco",
     category: "food"
   },
   {
     id: "gal2",
-    image: "/assets/images/yassa_poulet_hero_1782301879103.jpg",
+    image: "/assets/images/yassa_poulet_chicken_1782926394937.jpg",
     titleEn: "Chicken Yassa with Caramelized Onions",
     titleEs: "Pollo Yassa con Cebolla Caramelizada",
     category: "food"
